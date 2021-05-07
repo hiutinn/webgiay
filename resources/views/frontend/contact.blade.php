@@ -17,7 +17,7 @@
                                 <span>*</span>
                                 <input type="text" value="" name="name" placeholder="Your name">
                                 @if ($errors->has('name'))
-                                    <label class="text-red" style="font-weight: 600; font-size: 15px; margin-top: 5px">&ensp;<i class="fa fa-info"></i> {{ $errors->first('title') }}</label>
+                                    <label class="text-red" style="font-weight: 600; font-size: 15px; margin-top: 5px">&ensp;<i class="fa fa-info" style="color: red"></i> {{ $errors->first('title') }}</label>
                                 @endif
                             </p>
                             <p>
@@ -25,7 +25,7 @@
                                 <span>*</span>
                                 <input type="text" value="" name="email" placeholder="abc@gmail.com">
                                 @if ($errors->has('email'))
-                                    <label class="text-red" style="font-weight: 600; font-size: 15px; margin-top: 5px">&ensp;<i class="fa fa-info"></i> {{ $errors->first('title') }}</label>
+                                    <label class="text-red" style="font-weight: 600; font-size: 15px; margin-top: 5px">&ensp;<i class="fa fa-info" style="color: red"></i> {{ $errors->first('title') }}</label>
                                 @endif
                             </p>
                             <p>
@@ -33,7 +33,7 @@
                                 <span>*</span>
                                 <input type="text" value="" name="phone" placeholder="0123456789">
                                 @if ($errors->has('phone'))
-                                    <label class="text-red" style="font-weight: 600; font-size: 15px; margin-top: 5px">&ensp;<i class="fa fa-info"></i> {{ $errors->first('title') }}</label>
+                                    <label class="text-red" style="font-weight: 600; font-size: 15px; margin-top: 5px">&ensp;<i class="fa fa-info" style="color: red"></i> {{ $errors->first('title') }}</label>
                                 @endif
                             </p>
                             <p>

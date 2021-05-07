@@ -231,13 +231,13 @@
             </li>
             <li>
                 <a href="{{route('admin.product.index')}}">
-                    <i class="fa fa-fw fa-bars"></i> <span>QL Sản Phẩm</span>
+                    <i class="fa fa-fw fa-cubes"></i> <span>QL Sản Phẩm</span>
                     <span class="pull-right-container"></span>
                 </a>
             </li>
             <li>
                 <a href="{{route('admin.banner.index')}}">
-                    <i class="fa fa-fw fa-bars"></i> <span>QL Banner</span>
+                    <i class="fa fa-fw fa-object-group"></i> <span>QL Banner</span>
                     <span class="pull-right-container"></span>
                 </a>
             </li>
@@ -255,7 +255,7 @@
 {{--            </li>--}}
             <li>
                 <a href="{{route('admin.brand.index')}}">
-                    <i class="fa fa-fw fa-bars"></i> <span>QL Thương Hiệu</span>
+                    <i class="fa fa-fw fa-star"></i> <span>QL Thương Hiệu</span>
                     <span class="pull-right-container"></span>
                 </a>
             </li>
@@ -267,7 +267,7 @@
 {{--            </li>--}}
             <li>
                 <a href="{{route('admin.contact.index')}}">
-                    <i class="fa fa-fw fa-truck"></i> <span>QL Liên Hệ</span>
+                    <i class="fa fa-fw  fa-envelope"></i> <span>QL Liên Hệ</span>
                     <span class="pull-right-container"></span>
                 </a>
             </li>
@@ -279,7 +279,7 @@
             </li>
             <li>
                 <a href="{{route('admin.setting.index')}}">
-                    <i class="fa fa-fw fa-user"></i> <span>QL Settings</span>
+                    <i class="fa fa-fw fa-cog"></i> <span>QL Settings</span>
                     <span class="pull-right-container"></span>
                 </a>
             </li>

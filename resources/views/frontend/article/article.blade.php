@@ -11,7 +11,6 @@
         }
 
         .article h2 {
-            text-align: center;
             font-weight: 700;
             margin-bottom: 4rem;
         }
@@ -19,33 +18,43 @@
     </style>
     <div class="article">
         <div class="container">
-            <div class="article">
-                <h2><u>Tin Tức</u></h2>
-                <h3 class="text-uppercase" style="color: red">{{$data->title}}</h3>
-                <br>
-                <h5>{!! $data->summary !!}</h5>
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <h2 class="new-title">{{ $article->title }}</h2>
+                    <h5 style="margin: 15px 0px">{!! $article->summary !!}</h5><br>
+                    {!! $article->description !!}
 
-                <img src="{{asset($data->image)}}" alt="">
-                <p>
-                    {!! $data->desciption !!} </p>
+                </div>
             </div>
 
+            <style>
+                .sameArts-img {
+                    max-height: 263px;
+                    max-width: 350px;
+                    overflow: hidden;
+                }
+            </style>
             <div class="sameArticle">
-                <h3>Tin tức liên quan</h3>
-                <br>
+                <h3>Bài Viết Liên Quan</h3>
                 <div class="row">
-                    <div class="col-md-3" style="border: 1px solid #cccccc;margin: 0rem">
-                        <a href=""><img src="{{asset($data->image)}}" alt=""></a>
-                        <a href=""><h6 style="color: red;text-decoration: none;margin-top: 1rem">àdjakfjasjfa</h6></a>
+                    @foreach($sameArticles as $article)
+                    <div class="col-6 col-sm-6 col-md-4">
+                        <div class="clearfix margin-top-lg margin-bottom-lg">
+                            <div class="margin-bottom sameArts-img">
+                                <a href="" title="{{$article->title}}">
+                                    <img src="{{asset($article->image)}}" alt="{{$article->title}}" title="{{$article->title}}" class="img-responsive">
+                                </a>
+                            </div>
+                            <div class="caption">
+                                <h4>
+                                    <a href="" title="{{$article->title}}" style="text-decoration: none;color: black">
+                                       {{$article->title}}
+                                    </a>
+                                </h4>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-md-3 offset-md-1" style="border: 1px solid #cccccc">
-                        <a href=""><img src="{{asset($data->image)}}" alt=""></a>
-                        <a href=""><h6 style="color: red;text-decoration: none;margin-top: 1rem">àdjakfjasjfa</h6></a>
-                    </div>
-                    <div class="col-md-3 offset-md-1" style="border: 1px solid #cccccc">
-                        <a href=""><img src="{{asset($data->image)}}" alt=""></a>
-                        <a href=""><h6 style="color: red;text-decoration: none;margin-top: 1rem">àdjakfjasjfa</h6></a>
-                    </div>
+                    @endforeach
                 </div>
             </div>
 

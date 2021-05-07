@@ -17,12 +17,13 @@ route::get('/', 'HomeController@index');
 Route::get('/chi-tiet/{slug}', 'HomeController@detailProduct')->name('home.detailProduct');
 
 // Sản phẩm theo danh mục
-Route::get('/danh-muc', 'HomeController@getProductsByCategory')->name('home.category');
+Route::get('/danh-muc/{slug}', 'HomeController@getProductsByCategory')->name('home.category');
 
 // Tin tức
-Route::get('/tin-tuc', 'HomeController@getListArticles')->name('home.article');
+Route::get('/bai-viet', 'HomeController@getListArticles')->name('home.article');
+
 // Chi tiet tin tuc
-Route::get('/tin-tuc/{id}', 'HomeController@getArticle')->name('home.article.detail');
+Route::get('/bai-viet/{id}', 'HomeController@getArticle')->name('home.article.detail');
 
 // Tìm kiếm sản phẩm
 Route::get('/tim-kiem', 'HomeController@search')->name('home.search');

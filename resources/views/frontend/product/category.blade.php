@@ -9,58 +9,32 @@
 	padding: 20px;
 	overflow: auto;">
                 <ul>
-                    <li>
-                        <label class="checkbox">
-                            <input type="checkbox" name="checkbox" checked="">
-                            <i></i>Tất cả
-                        </label>
-                    </li>
-                    <li>
-                        <label class="checkbox">
-                            <input type="checkbox" name="checkbox">
-                            <i></i>Nike
-                        </label>
-                        <ul style="margin-left: 1rem">
-                            <label class="checkbox">
-                                <input type="checkbox" name="checkbox">
-                                <i></i>Air Force
-                            </label>
-                            <label class="checkbox">
-                                <input type="checkbox" name="checkbox">
-                                <i></i>Jordan
-                            </label>
-                            <label class="checkbox">
-                                <input type="checkbox" name="checkbox">
-                                <i></i>SB Dunk
-                            </label>
-                            <label class="checkbox">
-                                <input type="checkbox" name="checkbox">
-                                <i></i>Air Max
-                            </label>
-                        </ul>
-                    </li>
-                    <li>
-                        <label class="checkbox">
-                            <input type="checkbox" name="checkbox">
-                            <i></i>Converse
-                        </label>
-                        <ul style="margin-left: 1rem">
-                            <label class="checkbox">
-                                <input type="checkbox" name="checkbox">
-                                <i></i>1970s
-                            </label>
-                            <label class="checkbox">
-                                <input type="checkbox" name="checkbox">
-                                <i></i>CDG
-                            </label>
-                        </ul>
-                    </li>
-                    <li>
-                        <label class="checkbox">
-                            <input type="checkbox" name="checkbox">
-                            <i></i>Vans
-                        </label>
-                    </li>
+                    @foreach($productsCategory as $cate)
+                        @if($cate->parent_id == 0)
+                            <li>
+                                <label class="checkbox">
+                                        @if($cate->slug == $slug)
+                                        <a href="{{ route('home.category', ['slug' => $cate->slug]) }}" style="text-decoration: none; color: black"><b>{{$cate->name}}</b></a>
+                                        @else
+                                        <a href="{{ route('home.category', ['slug' => $cate->slug]) }}" style="text-decoration: none; color: black">{{$cate->name}}</a>
+                                        @endif
+                                </label>
+                                @foreach($productsCategory as $child)
+                                    <ul style="margin-left: 1rem">
+                                        @if($child->parent_id == $cate->id)
+                                            <label class="checkbox">
+                                                @if($child->slug == $slug)
+                                                    <a href="{{ route('home.category', ['slug' => $child->slug]) }}" style="text-decoration: none; color: black"><b>{{$child->name}}</b></a>
+                                                @else
+                                                    <a href="{{ route('home.category', ['slug' => $child->slug]) }}" style="text-decoration: none; color: black">{{$child->name}}</a>
+                                                @endif
+                                            </label>
+                                        @endif
+                                    </ul>
+                                @endforeach
+                            </li>
+                        @endif
+                    @endforeach
                 </ul>
             </div>
         </section>
@@ -84,257 +58,60 @@
                     <a href=""><img src="/frontend/images/arrow2.gif" alt="" class="v-middle"></a>
                 </div>
             </div>
-            <div class="pager">
-                <div class="limiter visible-desktop">
-                    <label>Show</label>
-                    <select>
-                        <option value="" selected="selected">
-                            9
-                        </option>
-                        <option value="">
-                            15
-                        </option>
-                        <option value="">
-                            30
-                        </option>
-                    </select> per page
-                </div>
-                <div class="clear"></div>
-            </div>
+            {{--            <div class="pager">--}}
+            {{--                <div class="limiter visible-desktop">--}}
+            {{--                    <label>Show</label>--}}
+            {{--                    <select>--}}
+            {{--                        <option value="" selected="selected">--}}
+            {{--                            9--}}
+            {{--                        </option>--}}
+            {{--                        <option value="">--}}
+            {{--                            15--}}
+            {{--                        </option>--}}
+            {{--                        <option value="">--}}
+            {{--                            30--}}
+            {{--                        </option>--}}
+            {{--                    </select> per page--}}
+            {{--                </div>--}}
+            {{--                <div class="clear"></div>--}}
+            {{--            </div>--}}
             <div class="clear"></div>
         </div>
-        <div class="box1">
-            <div class="col_1_of_single1 span_1_of_single1"><a href="single.html">
-                    <div class="view1 view-fifth1">
-                        <div class="top_box">
-                            <h3 class="m_1">Lorem ipsum dolor sit amet</h3>
-                            <p class="m_2">Lorem ipsum</p>
-                            <div class="grid_img">
-                                <div class="css3"><img src="/frontend/images/pic11.jpg" alt=""/></div>
-                                <div class="mask1">
-                                    <div class="info">Quick View</div>
-                                </div>
-                            </div>
-                            <div class="price">£480</div>
-                        </div>
-                    </div>
-                    <div class="clear"></div>
-                </a></div>
-            <div class="col_1_of_single1 span_1_of_single1"><a href="single.html">
-                    <div class="view1 view-fifth1">
-                        <div class="top_box">
-                            <h3 class="m_1">Lorem ipsum dolor sit amet</h3>
-                            <p class="m_2">Lorem ipsum</p>
-                            <div class="grid_img">
-                                <div class="css3"><img src="/frontend/images/pic10.jpg" alt=""/></div>
-                                <div class="mask1">
-                                    <div class="info">Quick View</div>
-                                </div>
-                            </div>
-                            <div class="price">£480</div>
-                        </div>
-                    </div>
 
-                    <div class="clear"></div>
-                </a></div>
-            <div class="col_1_of_single1 span_1_of_single1"><a href="single.html">
+        <h2 style="text-align: center;margin: 2rem">{{$category->name}}</h2>
+        @foreach($products as $product)
+            <div class="col_1_of_single1 span_1_of_single1">
+                <a href="{{route('home.detailProduct',['slug' => $product->slug])}}">
                     <div class="view1 view-fifth1">
                         <div class="top_box">
-                            <h3 class="m_1">Lorem ipsum dolor sit amet</h3>
-                            <p class="m_2">Lorem ipsum</p>
+                            <h3 class="m_1" style="min-height: 34px">{{$product->name}}</h3>
                             <div class="grid_img">
-                                <div class="css3"><img src="/frontend/images/pic9.jpg" alt=""/></div>
+                                <div class="css3"><img src="{{asset($product->image)}}" alt=""/></div>
                                 <div class="mask1">
                                     <div class="info">Quick View</div>
                                 </div>
                             </div>
-                            <div class="price" style="text-decoration: none;color: goldenrod">£480</div>
-                        </div>
-                    </div>
-
-                    <div class="clear"></div>
-                </a></div>
-            <div class="clear"></div>
-        </div>
-        <div class="box1">
-            <div class="col_1_of_single1 span_1_of_single1"><a href="single.html">
-                    <div class="view1 view-fifth1">
-                        <div class="top_box">
-                            <h3 class="m_1">Lorem ipsum dolor sit amet</h3>
-                            <p class="m_2">Lorem ipsum</p>
-                            <div class="grid_img">
-                                <div class="css3"><img src="/frontend/images/pic3.jpg" alt=""/></div>
-                                <div class="mask1">
-                                    <div class="info">Quick View</div>
-                                </div>
+                            <div class="old-price">
+                                <a href="{{route('home.detailProduct',['slug' => $product->slug])}}"
+                                   style="text-decoration: none;color: black">
+                                    <del>{{number_format($product->price,0,",",".") }} VNĐ</del>
+                                </a>
                             </div>
-                            <div class="price">£480</div>
-                        </div>
-                    </div>
-
-                    <div class="clear"></div>
-                </a></div>
-            <div class="col_1_of_single1 span_1_of_single1"><a href="single.html">
-                    <div class="view1 view-fifth1">
-                        <div class="top_box">
-                            <h3 class="m_1">Lorem ipsum dolor sit amet</h3>
-                            <p class="m_2">Lorem ipsum</p>
-                            <div class="grid_img">
-                                <div class="css3"><img src="/frontend/images/pic4.jpg" alt=""/></div>
-                                <div class="mask1">
-                                    <div class="info">Quick View</div>
-                                </div>
+                            <div class="price">
+                                <a href="{{route('home.detailProduct',['slug' => $product->slug])}}"
+                                   style="text-decoration: none;color: goldenrod">
+                                    {{number_format($product->sale,0,",",".") }} VNĐ
+                                </a>
                             </div>
-                            <div class="price">£480</div>
                         </div>
                     </div>
-
                     <div class="clear"></div>
                 </a></div>
-            <div class="col_1_of_single1 span_1_of_single1"><a href="single.html">
-                    <div class="view1 view-fifth1">
-                        <div class="top_box">
-                            <h3 class="m_1">Lorem ipsum dolor sit amet</h3>
-                            <p class="m_2">Lorem ipsum</p>
-                            <div class="grid_img">
-                                <div class="css3"><img src="/frontend/images/pic5.jpg" alt=""/></div>
-                                <div class="mask1">
-                                    <div class="info">Quick View</div>
-                                </div>
-                            </div>
-                            <div class="price">£480</div>
-                        </div>
-                    </div>
-
-                    <div class="clear"></div>
-                </a></div>
-            <div class="clear"></div>
-        </div>
-        <div class="box1">
-            <div class="col_1_of_single1 span_1_of_single1"><a href="single.html">
-                    <div class="view1 view-fifth1">
-                        <div class="top_box">
-                            <h3 class="m_1">Lorem ipsum dolor sit amet</h3>
-                            <p class="m_2">Lorem ipsum</p>
-                            <div class="grid_img">
-                                <div class="css3"><img src="/frontend/images/pic6.jpg" alt=""/></div>
-                                <div class="mask1">
-                                    <div class="info">Quick View</div>
-                                </div>
-                            </div>
-                            <div class="price">£480</div>
-                        </div>
-                    </div>
-
-                    <div class="clear"></div>
-                </a></div>
-            <div class="col_1_of_single1 span_1_of_single1"><a href="single.html">
-                    <div class="view1 view-fifth1">
-                        <div class="top_box">
-                            <h3 class="m_1">Lorem ipsum dolor sit amet</h3>
-                            <p class="m_2">Lorem ipsum</p>
-                            <div class="grid_img">
-                                <div class="css3"><img src="/frontend/images/pic7.jpg" alt=""/></div>
-                                <div class="mask1">
-                                    <div class="info">Quick View</div>
-                                </div>
-                            </div>
-                            <div class="price">£480</div>
-                        </div>
-                    </div>
-
-                    <div class="clear"></div>
-                </a></div>
-            <div class="col_1_of_single1 span_1_of_single1"><a href="single.html">
-                    <div class="view1 view-fifth1">
-                        <div class="top_box">
-                            <h3 class="m_1">Lorem ipsum dolor sit amet</h3>
-                            <p class="m_2">Lorem ipsum</p>
-                            <div class="grid_img">
-                                <div class="css3"><img src="/frontend/images/pic8.jpg" alt=""/></div>
-                                <div class="mask1">
-                                    <div class="info">Quick View</div>
-                                </div>
-                            </div>
-                            <div class="price">£480</div>
-                        </div>
-                    </div>
-
-                    <div class="clear"></div>
-                </a></div>
-            <div class="clear"></div>
-        </div>
-        <div class="box1">
-            <div class="col_1_of_single1 span_1_of_single1"><a href="single.html">
-                    <div class="view1 view-fifth1">
-                        <div class="top_box">
-                            <h3 class="m_1">Lorem ipsum dolor sit amet</h3>
-                            <p class="m_2">Lorem ipsum</p>
-                            <div class="grid_img">
-                                <div class="css3"><img src="/frontend/images/pic2.jpg" alt=""/></div>
-                                <div class="mask1">
-                                    <div class="info">Quick View</div>
-                                </div>
-                            </div>
-                            <div class="price">£480</div>
-                        </div>
-                    </div>
-
-                    <div class="clear"></div>
-                </a></div>
-            <div class="col_1_of_single1 span_1_of_single1"><a href="single.html">
-                    <div class="view1 view-fifth1">
-                        <div class="top_box">
-                            <h3 class="m_1">Lorem ipsum dolor sit amet</h3>
-                            <p class="m_2">Lorem ipsum</p>
-                            <div class="grid_img">
-                                <div class="css3"><img src="/frontend/images/pic1.jpg" alt=""/></div>
-                                <div class="mask1">
-                                    <div class="info">Quick View</div>
-                                </div>
-                            </div>
-                            <div class="price">£480</div>
-                        </div>
-                    </div>
-
-                    <div class="clear"></div>
-                </a></div>
-            <div class="col_1_of_single1 span_1_of_single1"><a href="single.html">
-                    <div class="view1 view-fifth1">
-                        <div class="top_box">
-                            <h3 class="m_1">Lorem ipsum dolor sit amet</h3>
-                            <p class="m_2">Lorem ipsum</p>
-                            <div class="grid_img">
-                                <div class="css3"><img src="/frontend/images/pic.jpg" alt=""/></div>
-                                <div class="mask1">
-                                    <div class="info">Quick View</div>
-                                </div>
-                            </div>
-                            <div class="price">£480</div>
-                        </div>
-                    </div>
-
-                    <div class="clear"></div>
-                </a></div>
-            <div class="clear"></div>
-        </div>
+        @endforeach
+        <div class="clear"></div>
         <nav aria-label="Page navigation example" style="margin: 2rem">
-            <ul class="pagination justify-content-end">
-                <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                    </a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                    </a>
-                </li>
-            </ul>
+            {{$products->links()}}
         </nav>
     </div>
-    <div class="clear"></div>
+        <div class="clear"></div>
 @endsection

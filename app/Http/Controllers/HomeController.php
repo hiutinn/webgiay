@@ -16,6 +16,7 @@ class HomeController extends GeneralController
         parent::__construct();
     }
 
+    // Lấy thông tin trang chủ
     public function index()
     {
         $categories = Category::where(['is_active' => 1])->orderBy('position', 'ASC')->get();
@@ -23,18 +24,18 @@ class HomeController extends GeneralController
         // Lấy sản phẩm hot
         $hot_pros = Product::where(['is_hot' => 1])->orderBy('position', 'ASC')->get();
         // Lấy sản phẩm mới nhất
-        $new_pros = Product::where(['is_active'=>1])->limit(12)
-            ->orderBy('id','desc')
-            ->orderBy('position','ASC')
+        $new_pros = Product::where(['is_active' => 1])->limit(12)
+            ->orderBy('id', 'desc')
+            ->orderBy('position', 'ASC')
             ->get();
 
         return view('frontend.index',
-        [
-            'categories'=>$categories,
-            'banners' => $banners,
-            'hot_pros'=>$hot_pros,
-            'new_pros'=>$new_pros,
-        ]
+            [
+                'categories' => $categories,
+                'banners' => $banners,
+                'hot_pros' => $hot_pros,
+                'new_pros' => $new_pros,
+            ]
         );
     }
 
@@ -44,6 +45,7 @@ class HomeController extends GeneralController
         return view('frontend.contact');
     }
 
+    // Thêm liên hệ vào DB
     public function postContact(Request $request)
     {
         //validate
@@ -52,9 +54,9 @@ class HomeController extends GeneralController
             'email' => 'required|email',
             'phone' => 'required'
         ], [
-            'name.required' => 'Bạn cần nhập vào tên',
-            'email.required' => 'Bạn cần nhập vào địa chỉ email',
-            'email.email' => 'Địa chỉ email không hợp lệ'
+            'name.required' => 'Bạn cần nhập vào tên !',
+            'email.required' => 'Bạn cần nhập vào địa chỉ email !',
+            'email.email' => 'Địa chỉ email không hợp lệ !'
         ]);
 
         $contact = new Contact();
@@ -69,30 +71,68 @@ class HomeController extends GeneralController
     // Chi tiết sản phẩm.
     public function detailProduct($slug)
     {
-        $product = Product::where(['is_active' => 1,'slug' => $slug])->first();
+        $productsCategory = Category::where(['type' => 0])->get();
 
-        $sameProducts  = Product::where([
+        $product = Product::where(['is_active' => 1, 'slug' => $slug])->first();
+
+        $sameProducts = Product::where([
             ['is_active', '=', 1],
-            ['id','<>',$product->id],
-            ['category_id','=',$product->category_id]
-        ])->orderBy('id','desc')
-            ->orderBy('position','ASC')
+            ['id', '<>', $product->id],
+            ['category_id', '=', $product->category_id]
+        ])->orderBy('id', 'desc')
+            ->orderBy('position', 'ASC')
             ->limit(4)
             ->get();
 
 
-        return view('frontend.product.detail',[
+        return view('frontend.product.detail', [
             'product' => $product,
-            'sameProducts' => $sameProducts
+            'sameProducts' => $sameProducts,
+            'productsCategory' => $productsCategory
         ]);
     }
 
-    public function getProductsByCategory()
+    // Lấy sản phẩm theo danh mục
+    public function getProductsByCategory($slug)
     {
+        $productsCategory = Category::where(['type' => 0])->get();
+        $category = Category::where(['is_active' => 1, 'slug' => $slug])->first();
 
-        return view('frontend.product.category');
+        if ($category) {
+            // step 1.1 Check danh mục cha -> lấy toàn bộ danh mục con để where In
+            $ids = []; // mảng lưu toàn id của danh mục cha + id - danh mục con
+
+            $ids[] = $category->id; // 1
+            $child_categories = []; // lưu danh mục con
+
+            foreach ($productsCategory as $child) {
+                if ($child->parent_id == $category->id) {
+                    $ids[] = $child->id; // thêm id của danh mục con vào mảng ids
+                    $child_categories[] = $child;
+                }
+            }
+
+            // Lấy sản phẩm theo danh mục
+            $products = Product::where
+            ([
+                'is_active' => 1
+            ])
+                ->whereIn('category_id', $ids) // category_id = những id đã lấy được ở trên
+                ->orderBy('id', 'desc') // Sắp xếp theo id tăng dần
+                ->paginate(6);
+
+            return view('frontend.product.category',
+                [
+                    'products' => $products,
+                    'productsCategory' => $productsCategory,
+                    'slug' => $slug,
+                    'category' => $category
+                ]
+            );
+        }
     }
 
+    // Lấy danh sách bài viết
     public function getListArticles()
     {
         $articles = Article::latest()->paginate(5);
@@ -103,13 +143,45 @@ class HomeController extends GeneralController
         );
     }
 
+    // Lấy chi tiết bài viết
     public function getArticle($id)
     {
-        $data = Article::find($id);
+        $article = Article::find($id);
+
+        $sameArticles = Article::where([
+            ['is_active', '=', 1],
+            ['id', '!=', $article->id],
+            ['category_id', '=', $article->category_id]
+        ])->orderBy('id', 'desc')
+            ->orderBy('position', 'ASC')
+            ->limit(4)
+            ->get();
         return view('frontend.article.article',
             [
-                'data' => $data
+                'article' => $article,
+                'sameArticles' => $sameArticles
             ]
+        );
+    }
+
+    // Tìm kiếm
+    public function search(Request $request)
+    {
+        $keyword = $request->input('key');
+
+        $slug = str_slug($keyword);
+
+        $products = Product::where([
+            ['slug' , 'like' , '%' . $slug . '%'],
+            ['is_active','=',1]
+        ])
+            ->paginate(6);
+
+        return view('frontend.search',
+        [
+            'products' => $products,
+            'keyword' => $keyword
+        ]
         );
     }
 

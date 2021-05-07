@@ -3,10 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Category;
-use App\Banner;
-use App\Product;
-use App\Contact;
+use App\Cart;
 
 class CartController extends GeneralController
 {

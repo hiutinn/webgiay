@@ -38,7 +38,7 @@
         }
     </style>
     <div class="article">
-        <h2><u>Tin Tức</u></h2>
+        <h2><u>Bài Viết</u></h2>
         <div class="container">
             @foreach($articles as $article)
             <div class="row">
@@ -47,7 +47,9 @@
                 </div>
                 <div class="col-md-9">
                     <a href="{{route('home.article.detail',['id'=>$article->id])}}" style="text-decoration: none;"><h3 >{{$article->title}}</h3></a>
-                    <h4>Posted on Aug 13th, 2013 by <span><a href="#">Finibus Bonorum</a></span></h4>
+                    <h4>Posted on {{$article->created_at}}
+{{--                        <span><a href="#">Finibus Bonorum</a></span>--}}
+                    </h4>
                     <p>{!! $article->summary !!}<a href="{{route('home.article.detail',['id'=>$article->id])}}" title="more">[....]</a></p>
                 </div>
             </div>

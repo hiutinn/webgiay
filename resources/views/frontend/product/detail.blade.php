@@ -19,58 +19,28 @@
 	padding: 20px;
 	overflow: auto;">
                         <ul>
-                            <li>
-                                <label class="checkbox">
-                                    <input type="checkbox" name="checkbox" checked="">
-                                    <i></i>Tất cả
-                                </label>
-                            </li>
-                            <li>
-                                <label class="checkbox">
-                                    <input type="checkbox" name="checkbox">
-                                    <i></i>Nike
-                                </label>
-                                <ul style="margin-left: 1rem">
-                                    <label class="checkbox">
-                                        <input type="checkbox" name="checkbox">
-                                        <i></i>Air Force
-                                    </label>
-                                    <label class="checkbox">
-                                        <input type="checkbox" name="checkbox">
-                                        <i></i>Jordan
-                                    </label>
-                                    <label class="checkbox">
-                                        <input type="checkbox" name="checkbox">
-                                        <i></i>SB Dunk
-                                    </label>
-                                    <label class="checkbox">
-                                        <input type="checkbox" name="checkbox">
-                                        <i></i>Air Max
-                                    </label>
-                                </ul>
-                            </li>
-                            <li>
-                                <label class="checkbox">
-                                    <input type="checkbox" name="checkbox">
-                                    <i></i>Converse
-                                </label>
-                                <ul style="margin-left: 1rem">
-                                    <label class="checkbox">
-                                        <input type="checkbox" name="checkbox">
-                                        <i></i>1970s
-                                    </label>
-                                    <label class="checkbox">
-                                        <input type="checkbox" name="checkbox">
-                                        <i></i>CDG
-                                    </label>
-                                </ul>
-                            </li>
-                            <li>
-                                <label class="checkbox">
-                                    <input type="checkbox" name="checkbox">
-                                    <i></i>Vans
-                                </label>
-                            </li>
+                            @foreach($productsCategory as $cate)
+                                @if($cate->parent_id == 0)
+                                    <li>
+                                        <label class="checkbox">
+                                                <a href="{{ route('home.category', ['slug' => $cate->slug]) }}" style="text-decoration: none; color: black">{{$cate->name}}</a>
+                                        </label>
+                                        @foreach($productsCategory as $child)
+                                            <ul style="margin-left: 1rem">
+                                                @if($child->parent_id == $cate->id)
+                                                    <label class="checkbox">
+                                                        @if($child->id == $product->category_id)
+                                                            <a href="{{ route('home.category', ['slug' => $child->slug]) }}" style="text-decoration: none; color: black"><b>{{$child->name}}</b></a>
+                                                        @else
+                                                            <a href="{{ route('home.category', ['slug' => $child->slug]) }}" style="text-decoration: none; color: black">{{$child->name}}</a>
+                                                        @endif
+                                                    </label>
+                                                @endif
+                                            </ul>
+                                        @endforeach
+                                    </li>
+                                @endif
+                            @endforeach
                         </ul>
                     </div>
                 </section>
