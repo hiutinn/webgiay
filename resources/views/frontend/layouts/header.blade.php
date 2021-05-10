@@ -12,10 +12,10 @@
             </ul>
         </div>
         <ul class="icon2 sub-icon2 profile_img">
-            <li><a class="active-icon c2" href="#"> </a>
+            <li><a class="active-icon" href="{{route('home.cart')}}" ><i style="background-color: black; width: 26px; height: 26px; font-size: 1.5rem; border-radius: 5px" class="fa fas fa-shopping-cart"></i></a>
                 <ul class="sub-icon2 list">
-                    <li><h3>Products</h3><a href=""></a></li>
-                    <li><p>Lorem ipsum dolor sit amet, consectetuer  <a href="">adipiscing elit, sed diam</a></p></li>
+                    <li><h3>Giỏ hàng</h3><a href=""></a></li>
+                    <li><p> Kiểm tra giỏ hàng của bạn</p></li>
                 </ul>
             </li>
         </ul>

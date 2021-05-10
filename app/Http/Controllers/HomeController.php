@@ -177,10 +177,13 @@ class HomeController extends GeneralController
         ])
             ->paginate(6);
 
+        $totalResult = $products->total(); // số lượng kết quả tìm kiếm
+
         return view('frontend.search',
         [
             'products' => $products,
-            'keyword' => $keyword
+            'keyword' => $keyword,
+            'totalResult' => $totalResult
         ]
         );
     }

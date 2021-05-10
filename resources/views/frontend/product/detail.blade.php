@@ -68,13 +68,13 @@
 {{--                        <div class="clear"></div>--}}
 {{--                    </ul>--}}
                     <div class="btn_form">
-                        <form action="{{route('home.cart')}}">
+                        <form action="#">
                             <input type="submit" value="buy now" title="">
                         </form>
                     </div>
-                    <ul class="add-to-links">
-                        <li><img src="images/wish.png" alt=""/><a href="#">Add to wishlist</a></li>
-                    </ul>
+{{--                    <ul class="add-to-links">--}}
+{{--                        <li><img src="images/wish.png" alt=""/><a href="#">Add to wishlist</a></li>--}}
+{{--                    </ul>--}}
                     <p class="m_desc">{!! $product->summary !!}</p>
 
                     <div class="social_single">
@@ -101,21 +101,27 @@
                                     <div class="view view-fifth">
                                         <div class="top_box">
                                             <h3 class="m_1">{{$product->name}}</h3>
-                                            <p class="m_2">Lorem ipsum</p>
                                             <div class="grid_img">
                                                 <div class="css3"><a
                                                         href="{{route('home.detailProduct',['slug' => $product->slug])}}"><img
                                                             src="{{asset($product->image)}}" alt=""/></a></div>
                                                 <div class="mask">
                                                     <div class="info"><a href=""
-                                                                         style="text-decoration: none;color: #FFFFFF">Quick
-                                                            View</a></div>
+                                                                         style="text-decoration: none;color: #FFFFFF">+ Giỏ Hàng</a></div>
                                                 </div>
                                             </div>
-                                            <div class="price"><a
-                                                    href="{{route('home.detailProduct',['slug' => $product->slug])}}"
-                                                    style="text-decoration: none;color: goldenrod">{{number_format($product->price,0,",",".") }}
-                                                    VNĐ</a></div>
+                                            <div class="old-price">
+                                                <a href="{{route('home.detailProduct',['slug' => $product->slug])}}"
+                                                   style="text-decoration: none;color: black">
+                                                    <del>{{number_format($product->price,0,",",".") }} VNĐ</del>
+                                                </a>
+                                            </div>
+                                            <div class="price">
+                                                <a href="{{route('home.detailProduct',['slug' => $product->slug])}}"
+                                                   style="text-decoration: none;color: goldenrod">
+                                                    {{number_format($product->sale,0,",",".") }} VNĐ
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
 

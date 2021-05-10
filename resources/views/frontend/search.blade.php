@@ -16,7 +16,7 @@
         }
     </style>
 
-        <h2><u>Kết Quả Tìm Kiếm : {{$keyword}}</u></h2>
+        <h2><u>Kết Quả Tìm Kiếm : {{$keyword}}({{ $totalResult }})</u></h2>
     <div class="search-result">
         @foreach($products as $product)
             <div class="col_1_of_single1 span_1_of_single1">
@@ -27,7 +27,7 @@
                             <div class="grid_img">
                                 <div class="css3"><img src="{{asset($product->image)}}" alt=""/></div>
                                 <div class="mask1">
-                                    <div class="info">Quick View</div>
+                                    <div class="info">+ Giỏ Hàng</div>
                                 </div>
                             </div>
                             <div class="old-price">
@@ -49,7 +49,7 @@
         @endforeach
         <div class="clear"></div>
         <nav aria-label="Page navigation example">
-            {{$products->links()}}
+            {{$products->appends(['key'=>$keyword])->links()}}
         </nav>
     </div>
     <div class="clear"></div>

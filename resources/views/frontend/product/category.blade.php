@@ -88,7 +88,7 @@
                             <div class="grid_img">
                                 <div class="css3"><img src="{{asset($product->image)}}" alt=""/></div>
                                 <div class="mask1">
-                                    <div class="info">Quick View</div>
+                                    <div class="info">+ Giỏ Hàng</div>
                                 </div>
                             </div>
                             <div class="old-price">
