@@ -3,7 +3,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Danh sách Banner <a href="{{route('admin.banner.create')}}" class="btn bg-purple"><i
+            QL Banner <a href="{{route('admin.banner.create')}}" class="btn bg-purple"><i
                     class="fa fa-plus"></i> Thêm Banner</a>
         </h1>
         <ol class="breadcrumb">

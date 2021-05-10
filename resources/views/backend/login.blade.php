@@ -22,7 +22,7 @@
 
 
 <div class="d-md-flex half">
-    <div class="bg" style="background-image: url('/image/something.png');"></div>
+{{--    <div class="bg" style="background-image: url('');"></div>--}}
     <div class="contents">
 
         <div class="container">

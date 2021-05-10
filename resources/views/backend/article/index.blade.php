@@ -3,7 +3,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Danh sách tin tức <a href="{{route('admin.article.create')}}" class="btn bg-purple"><i
+            QL Bài Viết <a href="{{route('admin.article.create')}}" class="btn bg-purple"><i
                     class="fa fa-plus"></i> Thêm tin tức</a>
         </h1>
         <ol class="breadcrumb">
@@ -18,7 +18,7 @@
             <div class="col-xs-12">
                 <div class="box">
                     <div class="box-header">
-                        <h3 class="box-title">Thông tin danh sách tin tức</h3>
+                        <h3 class="box-title">Thông tin danh sách bài viết</h3>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">

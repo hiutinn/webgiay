@@ -3,7 +3,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Danh sách sản phẩm <a href="{{route('admin.product.create')}}" class="btn bg-purple"><i class="fa fa-plus"></i> Thêm sản phẩm</a>
+            QL Sản Phẩm <a href="{{route('admin.product.create')}}" class="btn bg-purple"><i class="fa fa-plus"></i> Thêm sản phẩm</a>
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>

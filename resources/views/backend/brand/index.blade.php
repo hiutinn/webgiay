@@ -3,12 +3,13 @@
 @section('content')
     <section class="content-header">
         <h1>
-            QL User <a href="{{ route('admin.brand.create') }}" class="btn bg-purple btn-flat"><i class="fa fa-plus"></i>
+            QL Thương Hiệu <a href="{{ route('admin.brand.create') }}" class="btn bg-purple btn-flat"><i class="fa fa-plus"></i>
                 Thêm</a>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="/"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
-            <li class="active">QL Danh Sách - Nhà Cung Cấp</li>
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="#">Tables</a></li>
+            <li class="active">Brands</li>
         </ol>
     </section>
 
