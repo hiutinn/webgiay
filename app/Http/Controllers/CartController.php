@@ -85,7 +85,7 @@ class CartController extends GeneralController
 
         $listProducts = Cart::content(); // lấy toàn sản phẩm trong giỏ
 
-        $totalPrice = Cart::total(0, ",", "."); // lấy tổng giá của sản phẩm
+        $totalPrice = Cart::subtotal(0, ",", "."); // lấy tổng giá của sản phẩm
 
         return view('frontend.components.cart', [
             'cart' => $listProducts,

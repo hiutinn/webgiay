@@ -26,7 +26,7 @@
             color: red;
         }
 
-        .col-md-9 h4 span a{
+        .col-md-9 h4 span a {
             text-decoration: underline;
         }
 
@@ -36,23 +36,52 @@
             color: #303030;
             padding-bottom: 5px;
         }
+
+        .banner-content {
+            position: relative;
+            top: 20%;
+        }
+
+        .breadcrumb {
+            background: #cccccc;
+            position: relative;
+            display: flex;
+            justify-content: center;
+        }
+
+        .breadcrumb a {
+            color: black;
+            text-decoration: none;
     </style>
     <div class="article">
-        <h2><u>Bài Viết</u></h2>
+
         <div class="container">
-            @foreach($articles as $article)
-            <div class="row">
-                <div class="col-md-3">
-                    <a href="{{route('home.article.detail',['id'=>$article->id])}}"><img src="{{asset($article->image)}}" alt=""></a>
-                </div>
-                <div class="col-md-9">
-                    <a href="{{route('home.article.detail',['id'=>$article->id])}}" style="text-decoration: none;"><h3 >{{$article->title}}</h3></a>
-                    <h4>Posted on {{$article->created_at}}
-{{--                        <span><a href="#">Finibus Bonorum</a></span>--}}
-                    </h4>
-                    <p>{!! $article->summary !!}<a href="{{route('home.article.detail',['id'=>$article->id])}}" title="more">[....]</a></p>
+            <div style="height: 20rem; width: 100%; background: #cccccc; padding: 4rem;position: relative" class="banner">
+                <div class="banner-content">
+                    <h1 style="margin: 0rem;text-align: center"><u>Bài Viết</u></h1>
+                    <ul class="breadcrumb">
+                        <li><a href="/">Trang Chủ</a></li>
+                        <li>/</li>
+                        <li>Bài Viết</li>
+                    </ul>
                 </div>
             </div>
+            @foreach($articles as $article)
+                <div class="row">
+                    <div class="col-md-3">
+                        <a href="{{route('home.article.detail',['id'=>$article->id])}}"><img
+                                src="{{asset($article->image)}}" alt=""></a>
+                    </div>
+                    <div class="col-md-9">
+                        <a href="{{route('home.article.detail',['id'=>$article->id])}}" style="text-decoration: none;">
+                            <h3>{{$article->title}}</h3></a>
+                        <h4>Posted on {{$article->created_at}}
+                            {{--                        <span><a href="#">Finibus Bonorum</a></span>--}}
+                        </h4>
+                        <p>{!! $article->summary !!}<a href="{{route('home.article.detail',['id'=>$article->id])}}"
+                                                       title="more">[....]</a></p>
+                    </div>
+                </div>
             @endforeach
             <nav aria-label="Page navigation example">
                 {{$articles->links()}}

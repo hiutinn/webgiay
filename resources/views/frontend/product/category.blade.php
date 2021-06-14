@@ -1,8 +1,33 @@
 @extends('frontend.layouts.main')
 
 @section('content')
-    <div style="height: 20rem; width: 100%; background: grey; padding: 4rem" class="banner">
-        <h2 style="margin: 0rem;text-align: center"><u>{{ $category->name }}</u></h2>
+    <style>
+        .banner-content {
+            position: relative;
+            top: 20%;
+        }
+
+        .breadcrumb {
+            background: #cccccc;
+            position: relative;
+            display: flex;
+            justify-content: center;
+        }
+
+        .breadcrumb a {
+            color: black;
+            text-decoration: none;
+        }
+    </style>
+    <div style="height: 20rem; width: 100%; background: #cccccc; padding: 4rem;position: relative" class="banner">
+        <div class="banner-content">
+            <h1 style="margin: 0rem;text-align: center"><u>{{ $category->name }}</u></h1>
+            <ul class="breadcrumb">
+                <li><a href="/">Trang Chủ</a></li>
+                <li>/</li>
+                <li>{{ $category->name }}</li>
+            </ul>
+        </div>
 
     </div>
     <div class="rsidebar span_1_of_left">
@@ -81,7 +106,6 @@
             <div class="clear"></div>
         </div>
 
-        <h2 style="text-align: center;margin: 2rem">{{$category->name}}</h2>
         @foreach($products as $product)
             <div class="col_1_of_single1 span_1_of_single1">
                 <a href="{{route('home.detailProduct',['slug' => $product->slug])}}">
@@ -91,7 +115,7 @@
                             <div class="grid_img">
                                 <div class="css3"><img src="{{asset($product->image)}}" alt=""/></div>
                                 <div class="mask1">
-                                    <div class="info">+ Giỏ Hàng</div>
+                                    <a href="{{ route('home.cart.add-to-cart',['id' => $product->id]) }}"><div class="info">+ Giỏ Hàng</div></a>
                                 </div>
                             </div>
                             <div class="old-price">
