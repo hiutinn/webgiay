@@ -33,7 +33,26 @@ Route::get('/lien-he', 'HomeController@contact')->name('home.contact');
 Route::post('/lien-he', 'HomeController@postContact')->name('home.postContact');
 
 // Gio hang
-Route::get('/dat-hang', 'CartController@index')->name('home.cart');
+Route::get('/gio-hang', 'CartController@index')->name('home.cart');
+
+// Thêm sản phẩm vào giỏ hàng
+Route::get('/gio-hang/them-vao-gio/{id}', 'CartController@addToCart')->name('home.cart.add-to-cart');
+
+// Xóa sản phẩm khỏi giỏ hàng
+Route::get('/gio-hang/xoa-sp-khoi-gio-hang/{rowId}', 'CartController@removeProduct')->name('home.cart.remove-product');
+
+// Cập nhật số lượng sản phẩm
+Route::get('/gio-hang/cap-nhat-so-luong', 'CartController@updateProduct')->name('home.cart.update-product');
+
+// Hủy đơn hàng
+Route::get('/gio-hang/huy-dat-hang', 'CartController@destroy')->name('home.cart.destroy');
+
+// Đặt hàng
+Route::get('/dat-hang', 'CartController@order')->name('home.cart.order');
+
+Route::post('/dat-hang', 'CartController@postOrder')->name('home.cart.postOrder');
+
+Route::get('/dat-hang/hoan-tat-dat-hang', 'CartController@completedOrder')->name('home.cart.completedOrder');
 
 // Đăng nhập, đăng xuất.
 Route::get('/admin/login', 'AdminController@login')->name('admin.login');
@@ -56,6 +75,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.','middleware' => 'checklogin'
     // Ql Đơn hàng
     Route::resource('order', 'OrderController');
     Route::post('order/remove-to-cart', 'OrderController@removeToCart')->name('order.remove');
+    route::resource('orderStatus', 'OrderStatusController');
 
 });
 

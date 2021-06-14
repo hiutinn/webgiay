@@ -93,9 +93,10 @@ class HomeController extends GeneralController
     }
 
     // Lấy sản phẩm theo danh mục
-    public function getProductsByCategory($slug)
+    public function getProductsByCategory(Request $request,$slug)
     {
         $productsCategory = Category::where(['type' => 0])->get();
+
         $category = Category::where(['is_active' => 1, 'slug' => $slug])->first();
 
         if ($category) {

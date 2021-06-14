@@ -247,12 +247,18 @@
                     <span class="pull-right-container"></span>
                 </a>
             </li>
-{{--            <li>--}}
-{{--                <a href="{{route('admin.category.index')}}">--}}
-{{--                    <i class="fa fa-fw fa-bars"></i> <span>QL Thư Viện</span>--}}
-{{--                    <span class="pull-right-container"></span>--}}
-{{--                </a>--}}
-{{--            </li>--}}
+            <li>
+                <a href="{{route('admin.order.index')}}">
+                    <i class="fa fa-fw fa-bars"></i> <span>QL Đơn Hàng</span>
+                    <span class="pull-right-container"></span>
+                </a>
+            </li>
+            <li>
+                <a href="{{route('admin.orderStatus.index')}}">
+                    <i class="fa fa-fw fa-bars"></i> <span>QL Trạng Thái Đơn Hàng</span>
+                    <span class="pull-right-container"></span>
+                </a>
+            </li>
             <li>
                 <a href="{{route('admin.brand.index')}}">
                     <i class="fa fa-fw fa-star"></i> <span>QL Thương Hiệu</span>

@@ -7,9 +7,8 @@
                     class="fa fa-plus"></i> Thêm tin tức</a>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="#">Tables</a></li>
-            <li class="active">Articles</li>
+            <li><a href="#"><i class="fa fa-dashboard"></i> Admin</a></li>
+            <li class="active">DS Bài Viết</li>
         </ol>
     </section>
 
@@ -93,7 +92,7 @@
                 if (result) { // neu nhấn == ok , sẽ send request ajax
                     $.ajax({
                         url: '/admin/article/' + id, // http://webthucpham.local:8888/user/8
-                        type: 'DELETE', // phương truyền tải dữ liệu
+                        type: 'get', // phương truyền tải dữ liệu
                         data: {},
                         dataType: "json", // kiểu dữ liệu muốn nhận về
                         success: function (res) {

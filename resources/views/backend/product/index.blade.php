@@ -6,9 +6,8 @@
             QL Sản Phẩm <a href="{{route('admin.product.create')}}" class="btn bg-purple"><i class="fa fa-plus"></i> Thêm sản phẩm</a>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
-            <li><a href="#">Bảng</a></li>
-            <li class="active">Products</li>
+            <li><a href="#"><i class="fa fa-dashboard"></i> Admin</a></li>
+            <li class="active">DS Sản Phẩm</li>
         </ol>
     </section>
 

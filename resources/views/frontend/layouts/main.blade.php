@@ -78,6 +78,7 @@
 @include('frontend.layouts.footer')
 
 <script src="/frontend/owlcarousel/owl.carousel.min.js"></script>
+
 <script type="text/javascript">
     $(document).ready(function () {
 
@@ -113,6 +114,7 @@
         })
     });
 </script>
+@yield('my-js')
 <a href="#" id="toTop" style="display: block;"><span id="toTopHover" style="opacity: 1;"></span></a>
 </body>
 </html>

@@ -6,7 +6,7 @@
             QL Danh Mục
         </h1>
         <ol class="breadcrumb">
-            <li><a href="/admin"><i class="fa fa-dashboard"></i> Trang Chủ</a></li>
+            <li><a href="/admin"><i class="fa fa-dashboard"></i> Admin</a></li>
             <li class="active">QL Danh Mục</li>
         </ol>
     </section>

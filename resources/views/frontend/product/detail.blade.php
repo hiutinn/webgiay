@@ -68,8 +68,8 @@
 {{--                        <div class="clear"></div>--}}
 {{--                    </ul>--}}
                     <div class="btn_form">
-                        <form action="#">
-                            <input type="submit" value="buy now" title="">
+                        <form action="{{ route('home.cart.add-to-cart',['id'=>$product->id]) }}">
+                            <input type="submit" value="Thêm sản phẩm vào giỏ hàng" title="Thêm sản phẩm vào giỏ hàng">
                         </form>
                     </div>
 {{--                    <ul class="add-to-links">--}}

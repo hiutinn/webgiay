@@ -1,7 +1,10 @@
 @extends('frontend.layouts.main')
 
 @section('content')
-    <h2 style="margin: 4rem;text-align: center"><u>Sản Phẩm</u></h2>
+    <div style="height: 20rem; width: 100%; background: grey; padding: 4rem" class="banner">
+        <h2 style="margin: 0rem;text-align: center"><u>{{ $category->name }}</u></h2>
+
+    </div>
     <div class="rsidebar span_1_of_left">
         <section class="sky-form">
             <h4>Danh Mục</h4>

@@ -7,9 +7,8 @@
                 Thêm</a>
         </h1>
         <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="#">Tables</a></li>
-            <li class="active">Contacts</li>
+            <li><a href="#"><i class="fa fa-dashboard"></i> Admin</a></li>
+            <li class="active">DS Liên Hệ</li>
         </ol>
     </section>
 

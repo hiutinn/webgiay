@@ -83,7 +83,7 @@
                                         <div class="grid_img">
                                             <div class="css3"><a href="{{route('home.detailProduct',['slug' => $product->slug])}}"><img src="{{$product->image}}" alt=""/></a></div>
                                             <div class="mask">
-                                                <div class="info"><a href="" style="text-decoration: none;color: #FFFFFF">+ Giỏ Hàng</a></div>
+                                                <a href="{{ route('home.cart.add-to-cart',['id' => $product->id]) }}"><div class="info">+ Giỏ Hàng</div></a>
                                             </div>
                                         </div>
                                         <div class="old-price">
@@ -121,7 +121,7 @@
                                         <div class="grid_img">
                                             <div class="css3"><img src="{{asset($product->image)}}" alt=""/></div>
                                             <div class="mask">
-                                                <div class="info">+ Giỏ Hàng</div>
+                                                <a href="{{ route('home.cart.add-to-cart',['id' => $product->id]) }}"><div class="info">+ Giỏ Hàng</div></a>
                                             </div>
                                         </div>
                                         <div class="old-price">

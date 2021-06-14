@@ -3,14 +3,12 @@
 @section('content')
     <section class="content-header">
         <h1>
-            QL Danh Mục <a href="{{ route('admin.category.create') }}" class="btn bg-purple btn-flat"><i class="fa fa-plus"></i>
+            QL Trạng Thái ĐƠn Hàng <a href="{{ route('admin.orderStatus.create') }}" class="btn bg-purple btn-flat"><i class="fa fa-plus"></i>
                 Thêm</a>
         </h1>
         <ol class="breadcrumb">
-            <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> Admin</a></li>
-                <li class="active">DS Danh Mục</li>
-            </ol>
+            <li><a href="#"><i class="fa fa-dashboard"></i> Admin</a></li>
+            <li class="active">Trạng Thái Đơn Hàng</li>
         </ol>
     </section>
 
@@ -19,7 +17,7 @@
             <div class="col-md-12">
                 <div class="box">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Danh Sách Người Dùng</h3>
+                        <h3 class="box-title">Danh Sách Trạng Thái</h3>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
@@ -27,24 +25,16 @@
                             <tbody>
                             <tr>
                                 <th style="width: 10px">#</th>
-                                <th>Image</th>
                                 <th>Tên</th>
-                                <th>Type</th>
-                                <th>Ngày Cấp</th>
-                                <th>Trạng Thái</th>
                                 <th>Hành Động</th>
                             </tr>
 
                             @foreach($data as $key => $item)
                                 <tr class="item-{{ $item->id }}">
-                                    <td>{{ $key }}</td>
-                                    <td><img src="{{ asset($item->image) }}" width="50"/></td>
+                                    <td>{{ $key + 1 }}</td>
                                     <td>{{ $item->name }}</td>
-                                    <td>{{ ($item->type == 0) ? 'Sản Phẩm' : 'Bài Viết' }}</td>
-                                    <td>{{ $item->created_at }}</td>
-                                    <td>{{ $item->is_active == 1 ? 'Show' : 'Hide' }}</td>
                                     <td class="text-center">
-                                        <a href="{{ route('admin.category.edit', ['id' => $item->id ]) }}"
+                                        <a href="{{ route('admin.orderStatus.edit', ['id' => $item->id ]) }}"
                                            class="btn btn-flat bg-purple"><i class="fa fa-pencil"></i></a>
                                         <button data-id="{{ $item->id }}" class="btn btn-danger btn-delete"><i
                                                 class="fa fa-trash"></i></button>
@@ -59,7 +49,7 @@
                     </div>
                     <!-- /.box-body -->
                     <div class="box-footer clearfix">
-                        {{ $data->links() }}
+                        {{--                        {{ $data->links() }}--}}
                     </div>
                 </div>
                 <!-- /.box -->
@@ -88,7 +78,7 @@
                 if (result) { // neu nhấn == ok , sẽ send request ajax
 
                     $.ajax({
-                        url: '/admin/category/' + id, // http://webthucpham.local:8888/category/8
+                        url: '/admin/orderStatus/' + id, // http://webthucpham.local:8888/category/8
                         type: 'DELETE', // phương truyền tải dữ liệu
                         data: {
                             // dữ liệu truyền sang nếu có
@@ -117,5 +107,6 @@
         });
     </script>
 @endsection
+
 
 
